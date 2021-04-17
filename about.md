@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+My PhD has been mostly about approaches integrating machine learning with systems neuroscience, from data acquisition to analysis and model building, and back. See my projects [here] (https://scholar.google.com/citations?hl=en&user=Dj9FIoIAAAAJ&view_op=list_works&sortby=pubdate).
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[mossing@berkeley.edu](mailto:mossing@berkeley.edu)
