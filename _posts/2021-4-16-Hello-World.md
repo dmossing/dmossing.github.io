@@ -2,7 +2,7 @@
 layout: post
 title: Disentangling homonym representations in BERT
 ---
-I'm a systems neuroscientist by training, just getting my feet wet in studying the circuit mechanisms by which transformers represent sequences of inputs in a way that supports "understanding."
+I'm a systems neuroscientist by training, just getting my feet wet in studying the circuit mechanisms by which transformers represent sequences of inputs in a way that supports "understanding," as measured by NLP task benchmarks, excited tweets, etc.
 
 In my first series of posts, I am going to be looking at how a deep transformer model (BERT-Base, using the huggingface implementation) progressively segregates representations of homonyms based on semantic differences inferred from context. 
 
