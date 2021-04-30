@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Disentangling homonym representations in BERT
+title: Untangling homonym representations in BERT
 ---
 I'm a systems neuroscientist by training, just getting my feet wet in studying the circuit mechanisms by which transformers represent sequences of inputs in a way that supports "understanding," as measured by NLP task benchmarks, excited tweets, etc.
 
