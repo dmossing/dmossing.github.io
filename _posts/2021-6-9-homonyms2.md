@@ -29,11 +29,11 @@ We next examine how these measurements change, starting at the outputs of the fi
 
 The few-shot learnability of representations after the second layer of processing is better still.
 
-![Linear separability of representations, by layer](/images/pack_two_aurocs_by_layer.eps)
+![Linear separability of representations, by layer](/images/pack_two_aurocs_by_layer.jpg)
 
 In keeping with the trends we observed for the first two layers of processing, we find that this increased few-shot discriminability remains stable into the later layers of processing (A). Further, the more or less perfect many-shot discriminability likewise remains stable (B). 
 
-![Linear separability of other homonym representations](/images/four_words_two_aurocs_by_layer.eps)
+![Linear separability of other homonym representations](/images/four_words_two_aurocs_by_layer.jpg)
 
 If we repeat the same analysis on a few more pairs of homonyms that can appear either as a noun or as a verb-- "stalk," "stem," "box," and "cuff"-- we find that similar patterns hold (A-D): few-shot discriminability is nearly chance for the input, and somewhat above chance for the input representations concatenated with neighboring word representations. Discriminability for the input representations alone, without neighboring word representations, increases gradually across the first few layers of processing, saturating at a level somewhat above the discriminability of the concatenated inputs with neighbors. From this, we conclude that in general, word representations starting in intermediate layers of BERT take into account information from the surrounding word context that is specifically helpful for disambiguating the meaning of the word in question (as evidenced by the increasing discriminability of part of speech information), and ignoring distracting variability present in the neighboring word input representations (as evidenced by greater discriminability in the word representation, than in the concatenated input representation of the word and its neighbors). 
 
