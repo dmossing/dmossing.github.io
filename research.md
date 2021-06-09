@@ -1,5 +1,5 @@
 ---
-layout: gallery
+layout: page
 title: Research
 permalink: /research/
 ---
