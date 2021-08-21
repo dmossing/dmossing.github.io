@@ -9,7 +9,8 @@ permalink: /research/
 [BioRXiV link](https://www.biorxiv.org/content/10.1101/2021.03.31.437953v1.abstract)
 
 Systems neuroscientists tend to believe that the richness of computation in the brain emerges primarily from the structure of its synaptic connections. 
-Neural codes, then, can be understood as the solutions to a dynamical system, in which synapses couple the electrical activity of one cell type to another. 
+Neural codes, then, can be understood as the solutions to a dynamical system, in which synapses couple the electrical activity of one cell type to another.
+
 [//]: # (Because, in the cortex, much of connectivity is local and recurrent, we expect activity of nearby cells in particular to be strongly coupled.)
 By individually imaging genetically defined cell types during sensory stimulation, we seek to infer cell type-level local recurrent connectivity from patterns of activity.
 We develop a data-driven recurrent network model of the four main neuronal cell types of layer 2/3, that explains their diverse tuning for visual textures of varying size and contrast.
