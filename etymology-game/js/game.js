@@ -105,24 +105,25 @@ const etymologyData = [
   
 // Create element helper function
 const createElement = (type, props = {}, ...children) => {
-const element = document.createElement(type);
-Object.entries(props).forEach(([key, value]) => {
-    if (key === 'className') {
-    element.className = value;
-    } else if (key.startsWith('on')) {
-    element.addEventListener(key.toLowerCase().slice(2), value);
-    } else {
-    element.setAttribute(key, value);
-    }
-});
-children.flat().forEach(child => {
-    if (child instanceof Element) {
-    element.appendChild(child);
-    } else if (child !== null && child !== undefined) {
-    element.appendChild(document.createTextNode(child));
-    }
-});
-return element;
+    const element = document.createElement(type);
+    Object.entries(props).forEach(([key, value]) => {
+      if (key === 'className') {
+        element.className = value;
+      } else if (key.startsWith('on')) {
+        const eventName = key.toLowerCase().slice(2);
+        element.addEventListener(eventName, value);
+      } else {
+        element.setAttribute(key, value);
+      }
+    });
+    children.flat().forEach(child => {
+      if (child instanceof Element) {
+        element.appendChild(child);
+      } else if (child !== null && child !== undefined) {
+        element.appendChild(document.createTextNode(String(child)));  // Added String() conversion
+      }
+    });
+    return element;
 };
 
 class EtymologyGame {
@@ -252,27 +253,33 @@ class EtymologyGame {
 
         // Bottom level words
         currentPuzzle[2].forEach((word, index) => {
-        const g = this.createSvgElement('g');
-        const rect = this.createSvgElement('rect', {
-            x: String(40 + index * 120),
-            y: '180',
-            width: '80',
-            height: '30',
-            rx: '5',
-            className: word === currentPuzzle[2][2] ?
-            'fill-blue-100 stroke-blue-500' :
-            'fill-purple-100 stroke-purple-500'
-        });
-        const text = this.createSvgElement('text', {
-            x: String(80 + index * 120),
-            y: '200',
-            'text-anchor': 'middle',
-            className: 'text-sm'
-        });
-        text.textContent = word;
-        g.appendChild(rect);
-        g.appendChild(text);
-        svg.appendChild(g);
+            const g = this.createSvgElement('g');
+            const rect = this.createSvgElement('rect', {
+                x: String(40 + index * 120),
+                y: '180',
+                width: '80',
+                height: '30',
+                rx: '5',
+                className: word === currentPuzzle[2][2] ?
+                'fill-blue-100 stroke-blue-500' :
+                'fill-purple-100 stroke-purple-500'
+            });
+            const a = this.createSvgElement('a', {
+                href: `https://en.wiktionary.org/wiki/${encodeURIComponent(word)}`,
+                target: '_blank'
+            });
+            const text = this.createSvgElement('text', {
+                x: String(80 + index * 120),
+                y: '200',
+                'text-anchor': 'middle',
+                fill: '#2563eb',  // blue-600 color
+                className: 'text-sm cursor-pointer hover:underline'
+            });
+            text.textContent = word;
+            a.appendChild(text);
+            g.appendChild(rect);
+            g.appendChild(a);
+            svg.appendChild(g);
         });
 
         return svg;
@@ -300,21 +307,22 @@ class EtymologyGame {
                 onclick: (e) => {
                     e.preventDefault();
                     if (!hasGuessed) {
-                    this.handleGuess(word);
+                        this.handleGuess(word);
                     }
                     return false;
                 }
                 }, word)
             )
             ),
-            hasGuessed && createElement('div', { className: 'mt-6' },
+hasGuessed ? 
+          createElement('div', { className: 'mt-6' },
             createElement('div', { className: 'mb-4 text-center' },
-                createElement('h3', { className: 'text-xl font-semibold mb-2' },
+              createElement('h3', { className: 'text-xl font-semibold mb-2' },
                 isCorrect ? 'Correct!' : 'Not quite right!'
-                ),
-                createElement('p', { className: 'text-gray-600' },
+              ),
+              createElement('p', { className: 'text-gray-600' },
                 'Here\'s how these words are related:'
-                )
+              )
             ),
             this.renderTree(),
             createElement('div', { className: 'mt-6 flex justify-center' },
@@ -327,7 +335,8 @@ class EtymologyGame {
                 }
                 }, 'Next Puzzle')
             )
-            )
+          )
+          : null
         )
         );
     }
