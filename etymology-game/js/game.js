@@ -1,12 +1,12 @@
 // Etymology data
 const etymologyData = [
-    ['*peh₂w-', 'παύω', ['pause', 'repose', 'encyclopedia']],
-    ['*deyḱ-', 'tache', ['tack', 'tache', 'dictionary']],
-    ['*dʰeh₁-', 'factum', ['feat', 'fact', 'word']],
-    ['*h₁ey-', 'iter', ['errant', 'arrant', 'January']],
+    // ['*peh₂w-', 'παύω', ['pause', 'repose', 'encyclopedia']],
+    // ['*deyḱ-', 'tache', ['tack', 'tache', 'dictionary']],
+    // ['*dʰeh₁-', 'factum', ['feat', 'fact', 'word']],
+    // ['*h₁ey-', 'iter', ['errant', 'arrant', 'January']],
     ['*bʰeh₂-', 'focus', ['fuel', 'focus', 'fable']],
-    ['*bʰuH-', 'Bauer', ['bower', 'Bauer', 'be']],
-    ['*bʰer-', 'bearn', ['barn', 'bairn', 'birth']],
+    // ['*bʰuH-', 'Bauer', ['bower', 'Bauer', 'be']],
+    // ['*bʰer-', 'bearn', ['barn', 'bairn', 'birth']],
     ['*bʰeyd-', 'beita', ['abet', 'bait', 'bit']],
     ['*sed-', 'sedes', ['see', 'sedan', 'supersede']],
     ['*Hrewp-', 'route', ['rut', 'route', 'abrupt']],
@@ -74,9 +74,7 @@ const etymologyData = [
     ['*gʷreh₂-', 'gravis', ['grave', 'grief', 'gravity']],
     ['*bʰerǵʰ-', 'burg', ['Edinburgh', 'Bury', 'force']],
     ['*bʰerǵʰ-', 'beorg', ['Broughton', 'Barham', 'force']],
-    ['*kʷey-', 'poena', ['pain', 'pine', 'subpoena']],
-    ['*kʷey-', 'ποινή', ['pain', 'pine', 'subpoena']],
-    ['ποινή', 'poena', ['pain', 'pine', 'penal']],
+    ['*kʷey-', 'poena', ['pain', 'penal', 'pine']],
     ['*pel-', 'pellis', ['pelt', 'pillion', 'fell']],
     ['bulla', 'bulle', ['bull', 'bill', 'bowl']],
     ['*kh₂em-', 'καμάρα', ['camera', 'chamber', 'champion']],
@@ -97,10 +95,10 @@ const etymologyData = [
     ['*sperH-', 'pars', ['parse', 'partial', 'spear']],
     ['dēnārius', 'denier', ['den', 'denier', 'dinar']],
     ['*yek-', 'iocus', ['jewel', 'joke', 'Yule']],
-    ['*bʰleyǵ-', 'blanc', ['blanch', 'blank', 'blanc']],
-    ['*blankaz', 'blanc', ['blanch', 'blank', 'blanquette']],
-    ['*laubijā', 'loge', ['lodge', 'loggia', 'loge']],
-    ['vīcus', 'βῖκος', ['beaker', 'pitcher', 'wick']]
+    // ['*bʰleyǵ-', 'blanc', ['blanch', 'blank', 'blanc']],
+    // ['*blankaz', 'blanc', ['blanch', 'blank', 'blanquette']],
+    // ['*laubijā', 'loge', ['lodge', 'loggia', 'loge']],
+    // ['vīcus', 'βῖκος', ['beaker', 'pitcher', 'wick']]
 ];
   
 // Create element helper function
