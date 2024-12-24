@@ -205,7 +205,7 @@ class EtymologyGame {
         x: '200',
         y: '40',
         'text-anchor': 'middle',
-        className: 'text-sm'
+        className: 'text-base'
         });
         topText.textContent = currentPuzzle[0];
         topG.appendChild(topRect);
@@ -226,7 +226,7 @@ class EtymologyGame {
         x: '120',
         y: '120',
         'text-anchor': 'middle',
-        className: 'text-sm'
+        className: 'text-base'
         });
         midText.textContent = currentPuzzle[1];
         midG.appendChild(midRect);
@@ -271,7 +271,7 @@ class EtymologyGame {
                 y: '200',
                 'text-anchor': 'middle',
                 fill: '#2563eb',  // blue-600 color
-                className: 'text-sm cursor-pointer hover:underline'
+                className: 'text-base cursor-pointer hover:underline'
             });
             text.textContent = word;
             a.appendChild(text);
@@ -289,13 +289,13 @@ class EtymologyGame {
         this.root.innerHTML = '';
         this.root.appendChild(
         createElement('div', { className: 'max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg' },
-            createElement('h2', { className: 'text-2xl font-bold mb-4 text-center' },
-            'Which word has a different etymology?'
+            createElement('h2', { className: 'text-4xl font-bold mb-4 text-center' },
+            'Choose the etymological outlier:'
             ),
             createElement('div', { className: 'grid grid-cols-3 gap-4 mb-6' },
             ...shuffledWords.map(word => 
                 createElement('button', {
-                className: `p-4 text-lg rounded ${
+                className: `p-4 text-2xl rounded ${
                     hasGuessed && word === selectedWord
                     ? isCorrect
                         ? 'bg-green-500 text-white'
@@ -315,7 +315,7 @@ class EtymologyGame {
 hasGuessed ? 
           createElement('div', { className: 'mt-6' },
             createElement('div', { className: 'mb-4 text-center' },
-              createElement('h3', { className: 'text-xl font-semibold mb-2' },
+              createElement('h3', { className: 'text-3xl font-semibold mb-2' },
                 isCorrect ? 'Correct!' : 'Not quite right!'
               ),
               createElement('p', { className: 'text-gray-600' },
