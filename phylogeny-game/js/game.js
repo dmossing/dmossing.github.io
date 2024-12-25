@@ -49,7 +49,8 @@ class PhylogenyGame {
         this.setState({
             hasGuessed: true,
             isCorrect,
-            selectedTaxon: taxon
+            selectedTaxon: taxon,
+            correctTaxon: this.state.currentPuzzle[2]  // Store correct answer
         });
     }
 
@@ -98,10 +99,12 @@ class PhylogenyGame {
 
                         const card = this.createElement('button', {
                             className: `p-4 w-full rounded ${
-                                hasGuessed && JSON.stringify(taxon) === JSON.stringify(selectedTaxon)
-                                ? isCorrect
-                                    ? 'bg-green-100'
-                                    : 'bg-red-100'
+                                hasGuessed ? 
+                                    JSON.stringify(taxon) === JSON.stringify(selectedTaxon) ?
+                                        isCorrect ? 'bg-green-100' : 'bg-red-100'
+                                    : JSON.stringify(taxon) === JSON.stringify(this.state.currentPuzzle[2]) ?
+                                        'bg-green-100'  // Show correct answer
+                                    : 'bg-gray-100'
                                 : 'bg-gray-100 hover:bg-gray-200'
                             }`,
                             onclick: (e) => {
