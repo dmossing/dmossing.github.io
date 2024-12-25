@@ -6,7 +6,8 @@ class PhylogenyGame {
             shuffledTaxa: [],
             hasGuessed: false,
             isCorrect: false,
-            selectedTaxon: null
+            selectedTaxon: null,
+            correctTaxon: null
         };
 
         this.loadData().then(() => {
@@ -16,7 +17,7 @@ class PhylogenyGame {
     }
 
     async loadData() {
-        const response = await fetch('data.json');
+        const response = await fetch('js/data.json');
         this.data = await response.json();
     }
 
@@ -39,7 +40,8 @@ class PhylogenyGame {
             shuffledTaxa: taxa,
             hasGuessed: false,
             isCorrect: false,
-            selectedTaxon: null
+            selectedTaxon: null,
+            correctTaxon: puzzle[2]
         });
     }
 
@@ -49,8 +51,7 @@ class PhylogenyGame {
         this.setState({
             hasGuessed: true,
             isCorrect,
-            selectedTaxon: taxon,
-            correctTaxon: this.state.currentPuzzle[2]  // Store correct answer
+            selectedTaxon: taxon
         });
     }
 
@@ -88,26 +89,27 @@ class PhylogenyGame {
                 this.createElement('div', { className: 'grid grid-cols-3 gap-4 mb-6' },
                     ...shuffledTaxa.map(taxon => {
                         const div = this.createElement('div', {
-                            className: `relative ${
-                                hasGuessed && JSON.stringify(taxon) === JSON.stringify(selectedTaxon)
-                                ? isCorrect
-                                    ? 'border-2 border-green-500'
-                                    : 'border-2 border-red-500'
-                                : ''
-                            }`
+                            className: 'relative'
                         });
 
                         const card = this.createElement('button', {
-                            className: `p-4 w-full rounded ${
+                            className: `p-4 w-full rounded transition-colors ${
                                 hasGuessed ? 
                                     JSON.stringify(taxon) === JSON.stringify(selectedTaxon) ?
-                                        isCorrect ? 'bg-green-100' : 'bg-red-100'
-                                    : JSON.stringify(taxon) === JSON.stringify(this.state.currentPuzzle[2]) ?
-                                        'bg-green-100'  // Show correct answer
+                                        isCorrect ? 'bg-green-100 border-2 border-green-500' : 'bg-red-100 border-2 border-red-500'
+                                    : JSON.stringify(taxon) === JSON.stringify(currentPuzzle[2]) ?
+                                        'bg-green-100 border-2 border-green-500'
                                     : 'bg-gray-100'
                                 : 'bg-gray-100 hover:bg-gray-200'
                             }`,
                             onclick: (e) => {
+                                e.preventDefault();
+                                if (!hasGuessed) {
+                                    this.handleGuess(taxon);
+                                }
+                                return false;
+                            },
+                            ontouchend: (e) => {
                                 e.preventDefault();
                                 if (!hasGuessed) {
                                     this.handleGuess(taxon);
@@ -125,7 +127,8 @@ class PhylogenyGame {
                             href: taxon[1],
                             className: 'text-blue-600 hover:underline',
                             target: '_blank',
-                            onclick: (e) => e.stopPropagation()
+                            onclick: (e) => e.stopPropagation(),
+                            ontouchend: (e) => e.stopPropagation()
                         }, taxon[0]);
 
                         card.appendChild(img);
