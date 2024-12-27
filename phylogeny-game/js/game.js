@@ -17,7 +17,7 @@ class PhylogenyGame {
     }
 
     async loadData() {
-        const response = await fetch('js/data.json');
+        const response = await fetch('data.json');
         this.data = await response.json();
     }
 
