@@ -18,7 +18,32 @@ class PhylogenyGame {
 
     async loadData() {
         const response = await fetch('data.json');
-        this.data = await response.json();
+        const rawData = await response.json();
+        
+        // Initialize empty object for grouped data
+        this.groupedData = {};
+        
+        // Go through each triplet in the raw data
+        for (let triplet of rawData) {
+            // Create key using just the names, not the full data
+            const key = JSON.stringify([triplet[0][0], triplet[1][0]]);
+            
+            // If we haven't seen this pair before, initialize it
+            if (!this.groupedData[key]) {
+                this.groupedData[key] = {
+                    pair: [triplet[0], triplet[1]],
+                    thirds: []
+                };
+            }
+            
+            // Add the third element if it's not already there
+            if (!this.groupedData[key].thirds.find(t => t[0] === triplet[2][0])) {
+                this.groupedData[key].thirds.push(triplet[2]);
+            }
+        }
+        
+        // Keep the old this.data for compatibility
+        this.data = rawData;
     }
 
     setState(newState) {
@@ -27,8 +52,10 @@ class PhylogenyGame {
     }
 
     setupNewPuzzle() {
-        const randomIndex = Math.floor(Math.random() * this.data.length);
-        const puzzle = this.data[randomIndex];
+        const pairs = Object.values(this.groupedData);
+        const randomPair = pairs[Math.floor(Math.random() * pairs.length)];
+        const randomThird = randomPair.thirds[Math.floor(Math.random() * randomPair.thirds.length)];
+        const puzzle = [...randomPair.pair, randomThird];
         const taxa = [...puzzle];
         for (let i = taxa.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
